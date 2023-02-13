@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ProjectName: DatasetAnalysis
@@ -71,6 +72,48 @@ public class UserBehaviorController {
     public HttpResult getInfoByDate(String date){
         System.out.println("根据date获得对应信息");
         List<UserBehavior> infoList = userBehaviorService.getInfoByDate(date);
+        return HttpResult.ok(infoList);
+    }
+
+    @GetMapping(value = "/getUserActiveTime")
+    public HttpResult getUserActiveTime(){
+        System.out.println("获取一天中用户活跃时段分布");
+        List<Map<String, String>> infoList = userBehaviorService.getUserActiveTime();
+        return HttpResult.ok(infoList);
+    }
+
+    @GetMapping(value = "/getUserBehaviorHabit")
+    public HttpResult getUserBehaviorHabit(){
+        System.out.println("获取用户行为习惯（从2017-11-25到2017-12-04）");
+        List<Map<String, String>> infoList = userBehaviorService.getUserBehaviorHabit();
+        return HttpResult.ok(infoList);
+    }
+
+    @GetMapping(value = "/countUserActive")
+    public HttpResult countUserActive(){
+        System.out.println("统计用户行为总数");
+        List<Map<String, String>> infoList = userBehaviorService.countUserActive();
+        return HttpResult.ok(infoList);
+    }
+
+    @GetMapping(value = "/countVisitorsWithVariousBehaviors")
+    public HttpResult countVisitorsWithVariousBehaviors(){
+        System.out.println("统计不同行为的访客数");
+        List<Map<String, String>> infoList = userBehaviorService.countVisitorsWithVariousBehaviors();
+        return HttpResult.ok(infoList);
+    }
+
+    @GetMapping(value = "/getTopTenHits")
+    public HttpResult getTopTenHits(){
+        System.out.println("获取点击量前二十的商品");
+        List<Map<String, String>> infoList = userBehaviorService.getTopTenHits();
+        return HttpResult.ok(infoList);
+    }
+
+    @GetMapping(value = "/getTopTenPurchase")
+    public HttpResult getTopTenPurchase(){
+        System.out.println("获取购买量前二十的商品");
+        List<Map<String, String>> infoList = userBehaviorService.getTopTenPurchase();
         return HttpResult.ok(infoList);
     }
 }

@@ -4,6 +4,7 @@ import cn.edu.guet.datasetanalysis.bean.UserBehavior;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ProjectName: DatasetAnalysis
@@ -22,4 +23,10 @@ public interface UserBehaviorMapper {
     List<UserBehavior> getInfoByBehaviorType(String behaviorType);
     List<UserBehavior> getInfoByDateTime(String dateTime);
     List<UserBehavior> getInfoByDate(String date);
+    List<Map<String,String>> getUserActiveTime();
+    List<Map<String,String>> getUserBehaviorHabit();
+    List<Map<String,String>> countUserActive();
+    List<Map<String,String>> countVisitorsWithVariousBehaviors();
+    List<Map<String,String>> getTopTenPurchase();
+    List<Map<String,String>> getTopTenHits();
 }

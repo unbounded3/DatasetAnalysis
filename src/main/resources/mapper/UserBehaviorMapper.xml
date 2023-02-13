@@ -29,4 +29,56 @@
     <select id="getInfoByDate" resultType="cn.edu.guet.datasetanalysis.bean.UserBehavior">
         SELECT * FROM userbehavior WHERE date = #{date}
     </select>
+
+    <select id="getUserActiveTime" resultType="java.util.Map">
+        SELECT time, COUNT(behavior_type) behaviornum,
+            SUM(CASE WHEN behavior_type='pv' THEN 1 ELSE 0 END) AS hits,
+            SUM(CASE WHEN behavior_type='fav' THEN 1 ELSE 0 END) AS collectiontimes,
+            SUM(CASE WHEN behavior_type='cart' THEN 1 ELSE 0 END) AS additionalnum,
+            SUM(CASE WHEN behavior_type='buy' THEN 1 ELSE 0 END) AS buytimes
+        FROM userbehavior
+        GROUP BY time
+        ORDER BY time;
+    </select>
+
+    <select id="getUserBehaviorHabit" resultType="java.util.Map">
+        select Date,COUNT(Behavior_type) as userbehaviornum,
+            sum(case when Behavior_type ='pv' then 1 else 0 end ) as click,
+            sum(case when Behavior_type ='fav' then 1 else 0 end) as collection,
+            sum(case when Behavior_type ='cart' then 1 else 0 end) as additionalbuy,
+            sum(case when Behavior_type ='buy' then 1 else 0 end) as buy
+        from userbehavior
+        GROUP BY Date
+        ORDER BY Date;
+    </select>
+
+    <select id="countUserActive" resultType="java.util.Map">
+        select behavior_type,count(behavior_type) as countuseractive
+        from userbehavior
+        group by behavior_type;
+    </select>
+
+    <select id="countVisitorsWithVariousBehaviors" resultType="java.util.Map">
+        select behavior_type,count(distinct user_id) as visitors
+        from userbehavior
+        group by behavior_type;
+    </select>
+
+    <select id="getTopTenHits" resultType="java.util.Map">
+        SELECT item_id item,count(behavior_type) purchasevolume
+        FROM userbehavior
+        WHERE behavior_type = 'pv'
+        GROUP BY item_id
+        ORDER BY 购买量 desc
+            LIMIT 20;
+    </select>
+
+    <select id="getTopTenPurchase" resultType="java.util.Map">
+        SELECT item_id 商品,count(behavior_type) purchasevolume
+        FROM userbehavior
+        WHERE behavior_type = 'buy'
+        GROUP BY item_category
+        ORDER BY 购买量 desc
+            LIMIT 20;
+    </select>
 </mapper>

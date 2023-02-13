@@ -13,8 +13,8 @@ import java.util.List;
  * @createTime: 2023年02月12日 23:23:00
  */
 @Mapper
-public interface RDate {
-    List<RDate> getAllInfo();
-    List<RDate> getInfoByUserId(String userId);
-    List<RDate> getInfoByNearlyBuy(int nearlyBuy);
+public interface RDateMapper {
+    List<RDateMapper> getAllInfo();
+    List<RDateMapper> getInfoByUserId(String userId);
+    List<RDateMapper> getInfoByNearlyBuy(int nearlyBuy);
 }

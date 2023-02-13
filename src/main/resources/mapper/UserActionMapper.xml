@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.datasetanalysis.mapper.UserActionMapper">
+
+    <select id="countUserBehavior" resultType="long">
+        select count(*)
+        from 用户行为
+        where 点击>0;
+    </select>
+
+    <select id="countClickAndBuy" resultType="long">
+        select count(*) clickandbuy
+        from 用户行为
+        where 点击>0 and 收藏=0 and 加购=0 and 购买>0;
+    </select>
+
+    <select id="countClickAdditionalAndBuy" resultType="long">
+        select count(*) clickadditionalandbuy
+        from 用户行为
+        where 点击>0 and 收藏=0 and 加购>0 and 购买>0;
+    </select>
+
+    <select id="countClickCollectionAndBuy" resultType="long">
+        select count(*) clickcollectionandbuy
+        from 用户行为
+        where 点击>0 and 收藏>0 and 加购=0 and 购买>0;
+    </select>
+
+    <select id="countClickAdditionalCollectionAndBuy" resultType="long">
+        select count(*) clickadditionalcollectionandbuy
+        from 用户行为
+        where 点击>0 and 收藏>0 and 加购>0 and 购买>0;
+    </select>
+
+    <select id="countLoss" resultType="long">
+        select count(*) loss
+        from 用户行为
+        where 点击>0 and 收藏=0 and 加购=0 and 购买=0;
+    </select>
+</mapper>

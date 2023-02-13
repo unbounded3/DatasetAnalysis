@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ProjectName: DatasetAnalysis
@@ -55,5 +56,35 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     @Override
     public List<UserBehavior> getInfoByDate(String date) {
         return userBehaviorMapper.getInfoByDate(date);
+    }
+
+    @Override
+    public List<Map<String, String>> getUserActiveTime() {
+        return userBehaviorMapper.getUserActiveTime();
+    }
+
+    @Override
+    public List<Map<String, String>> getUserBehaviorHabit() {
+        return userBehaviorMapper.getUserBehaviorHabit();
+    }
+
+    @Override
+    public List<Map<String, String>> countUserActive() {
+        return userBehaviorMapper.countUserActive();
+    }
+
+    @Override
+    public List<Map<String, String>> countVisitorsWithVariousBehaviors() {
+        return userBehaviorMapper.countVisitorsWithVariousBehaviors();
+    }
+
+    @Override
+    public List<Map<String, String>> getTopTenHits() {
+        return userBehaviorMapper.getTopTenHits();
+    }
+
+    @Override
+    public List<Map<String, String>> getTopTenPurchase() {
+        return userBehaviorMapper.getTopTenPurchase();
     }
 }
