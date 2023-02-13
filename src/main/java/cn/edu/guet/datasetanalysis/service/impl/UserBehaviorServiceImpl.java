@@ -87,4 +87,9 @@ public class UserBehaviorServiceImpl implements UserBehaviorService {
     public List<Map<String, String>> getTopTenPurchase() {
         return userBehaviorMapper.getTopTenPurchase();
     }
+
+    @Override
+    public List<Map<String, String>> countBuyTimesOfGoods() {
+        return userBehaviorMapper.countBuyTimesOfGoods();
+    }
 }

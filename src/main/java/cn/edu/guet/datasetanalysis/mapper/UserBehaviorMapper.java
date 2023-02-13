@@ -29,4 +29,6 @@ public interface UserBehaviorMapper {
     List<Map<String,String>> countVisitorsWithVariousBehaviors();
     List<Map<String,String>> getTopTenPurchase();
     List<Map<String,String>> getTopTenHits();
+    List<Map<String,String>> countBuyTimesOfGoods();
+
 }

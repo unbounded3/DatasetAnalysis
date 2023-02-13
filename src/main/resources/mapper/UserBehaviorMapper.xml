@@ -74,11 +74,21 @@
     </select>
 
     <select id="getTopTenPurchase" resultType="java.util.Map">
-        SELECT item_id 商品,count(behavior_type) purchasevolume
+        SELECT item_id item,count(behavior_type) purchasevolume
         FROM userbehavior
         WHERE behavior_type = 'buy'
         GROUP BY item_category
         ORDER BY 购买量 desc
             LIMIT 20;
+    </select>
+
+    <select id="countBuyTimesOfGoods" resultType="java.util.Map">
+        select buytimes,count(*) counttimes
+        from (select count(item_id) 购买次数
+              from userbehavior
+              where behavior_type='buy'
+              group by item_id) goumai
+        group by 购买次数
+        order by 次数汇总 desc;
     </select>
 </mapper>

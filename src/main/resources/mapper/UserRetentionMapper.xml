@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.datasetanalysis.mapper.UserRetentionMapper">
+    <resultMap id="mapResult" type="java.util.HashMap">
+        <result property="key" column="username"/>
+        <result property="value" column="balance" />
+    </resultMap>
+
+    <select id="getUserRetentionRate" resultType="java.util.Map">
+        SELECT CONCAT(ROUND(100*第二天留存用户/第一天新用户数,2),'%')AS 次日留存率,
+               CONCAT(ROUND(100*第三天留存用户/第一天新用户数,2),'%')AS 三日留存率,
+               CONCAT(ROUND(100*第五天留存用户/第一天新用户数,2),'%')AS 五日留存率,
+               CONCAT(ROUND(100*第七天留存用户/第一天新用户数,2),'%')AS 七日留存率
+        from  留存用户表;
+    </select>
+</mapper>

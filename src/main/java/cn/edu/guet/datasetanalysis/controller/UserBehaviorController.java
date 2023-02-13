@@ -116,4 +116,11 @@ public class UserBehaviorController {
         List<Map<String, String>> infoList = userBehaviorService.getTopTenPurchase();
         return HttpResult.ok(infoList);
     }
+
+    @GetMapping(value = "/countBuyTimesOfGoods")
+    public HttpResult countBuyTimesOfGoods(){
+        System.out.println("统计各种购买次数的数量");
+        List<Map<String, String>> infoList = userBehaviorService.countBuyTimesOfGoods();
+        return HttpResult.ok(infoList);
+    }
 }
