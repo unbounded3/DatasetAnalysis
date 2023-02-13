@@ -69,7 +69,7 @@
         FROM userbehavior
         WHERE behavior_type = 'pv'
         GROUP BY item_id
-        ORDER BY 购买量 desc
+        ORDER BY purchasevolume desc
             LIMIT 20;
     </select>
 
@@ -78,17 +78,17 @@
         FROM userbehavior
         WHERE behavior_type = 'buy'
         GROUP BY item_category
-        ORDER BY 购买量 desc
+        ORDER BY purchasevolume desc
             LIMIT 20;
     </select>
 
     <select id="countBuyTimesOfGoods" resultType="java.util.Map">
         select buytimes,count(*) counttimes
-        from (select count(item_id) 购买次数
+        from (select count(item_id) buytimes
               from userbehavior
               where behavior_type='buy'
               group by item_id) goumai
-        group by 购买次数
-        order by 次数汇总 desc;
+        group by buytimes
+        order by counttimes desc;
     </select>
 </mapper>

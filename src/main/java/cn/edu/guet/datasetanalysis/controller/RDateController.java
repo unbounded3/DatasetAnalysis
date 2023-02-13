@@ -36,7 +36,7 @@ public class RDateController {
 
     @GetMapping(value = "/getInfoByUserId")
     public HttpResult getInfoByUserId(String userId){
-        System.out.println("获取所有用户的购买次数");
+        System.out.println("根据userid获取用户的购买次数");
         List<RDateMapper> list = rDateService.getInfoByUserId(userId);
         return HttpResult.ok(list);
     }
