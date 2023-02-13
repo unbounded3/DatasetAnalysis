@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.datasetanalysis.mapper.FuGouMapper">
+    <resultMap id="mapResult" type="java.util.HashMap">
+        <result property="key" column="username"/>
+        <result property="value" column="balance" />
+    </resultMap>
+
+    <select id="getAllUserBuyTimes" resultType="cn.edu.guet.datasetanalysis.bean.FuGou">
+        SELECT * FROM fugou
+    </select>
+
+    <select id="getConsumptionFrequency" resultMap="mapResult">
+        SELECT user_id,
+               (case when 购买次数 between 1 and 2 then 1
+                     when 购买次数 between 3 and 4 then 2
+                     when 购买次数 between 5 and 6 then 3
+                     when 购买次数 >=7 then 4
+                     else null end ) as frequency
+        FROM(
+                select User_ID,count(Behavior_type)as 购买次数
+                from userbehavior
+                where Behavior_type='buy'
+                group by User_ID) as 购买频率
+        ORDER BY frequency DESC;
+    </select>
+
+    <select id="getConsumptionFrequencyByUserId" resultType="java.util.Map">
+        SELECT user_id,
+               (case when 购买次数 between 1 and 2 then 1
+                     when 购买次数 between 3 and 4 then 2
+                     when 购买次数 between 5 and 6 then 3
+                     when 购买次数 >=7 then 4
+                     else null end ) as frequency
+        FROM(
+                select User_ID,count(Behavior_type)as 购买次数
+                from userbehavior
+                where Behavior_type='buy'
+                group by User_ID) as 购买频率
+        WHERE 购买频率.User_ID = #{UserId}
+    </select>
+</mapper>

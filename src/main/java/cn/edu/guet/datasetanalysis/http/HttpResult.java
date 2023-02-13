@@ -3,8 +3,8 @@ package cn.edu.guet.datasetanalysis.http;
 /**
  * HTTP结果封装
  *
- * @Author Liwei
- * @Date 2021-08-10 09:30
+ * @Author
+ * @Date
  */
 public class HttpResult {
 
